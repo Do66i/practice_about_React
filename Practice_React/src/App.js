@@ -22,7 +22,7 @@ function App() {
       <div className="black-nav">
         <div style={이것도가능}>개발 Blog</div>
       </div>
-      {/* <div className="list">
+      <div className="list">
         <h4> {title[0]} <span onClick={() => { setCount(count + 1) }}>🐘</span> {count} </h4>
         <p>03월 10일</p>
         <hr />
@@ -36,7 +36,7 @@ function App() {
         <h4> {title[2]} </h4>
         <p>03월 10일</p>
         <hr />
-      </div> */}
+      </div>
 
       {
         title.map((a) => {

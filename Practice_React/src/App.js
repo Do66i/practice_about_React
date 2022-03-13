@@ -5,14 +5,21 @@ import "./App.css";
 function App() {
 
   let [title, setTitle] = useState(['레포데하고싶다', '옵치하고싶다', '눕고싶다']);
-  let [count, setCount] = useState(0);
   let [modal, setModal] = useState(false); //useState(false) = on/off 스위치역할, 사이트 로드시 모달창 안보임
+  let [count, setCount] = useState([0, 0, 0]);
+  let [pushTitle, setPushTitle] = useState(0);
+  let [inputData, setInPutData] = useState(''); // input 입력값 저장공간
   let 이것도가능 = { fontSize: "30px" };
   // function changeTitle() {
   //   let newArr = [...title];
   //   newArr[1] = '사실은 롤하고싶다';
   //   setTitle(newArr);
   // }
+  function titleCount(num) {
+    const newCount = [...count]
+    newCount[num] += 1;
+    setCount(newCount)
+  }
 
 
 
@@ -22,27 +29,15 @@ function App() {
       <div className="black-nav">
         <div style={이것도가능}>개발 Blog</div>
       </div>
-      <div className="list">
-        <h4> {title[0]} <span onClick={() => { setCount(count + 1) }}>🐘</span> {count} </h4>
-        <p>03월 10일</p>
-        <hr />
-      </div>
-      <div className="list">
-        <h4> {title[1]}</h4>
-        <p>03월 10일</p>
-        <hr />
-      </div>
-      <div className="list">
-        <h4> {title[2]} </h4>
-        <p>03월 10일</p>
-        <hr />
-      </div>
+
 
       {
-        title.map((a) => {
+        title.map((a, titleNum) => {
           return (
             <div className="list">
-              <h4> {a} <span onClick={() => { setCount(count + 1) }}>🐘</span> {count} </h4>
+              <h4 onClick={() => { setModal(!modal); setPushTitle(titleNum) }} >
+                {a}{console.log('타이틀?', pushTitle)} </h4>
+              <span className="btn" onClick={() => { titleCount(titleNum) }}>🐘</span> {count[titleNum]}{console.log('성공적일까요 ?', count)}
               <p>03월 10일</p>
               <hr />
             </div>
@@ -50,9 +45,11 @@ function App() {
         })
       }
 
-      <button onClick={() => { setModal(!modal) }}>뿌엥!{console.log(modal)}</button>
-      {modal ? <Modal title={title} /> : null}
-    </div>
+      <input onChange={(e) => { setInPutData(e.target.value) }}></input>
+      {console.log(inputData)}
+
+      {modal ? <Modal title={title} pushTitle={pushTitle} /> : null}
+    </div >
   );
   /*
   return안에 return을 만들고 그 안에 div 평행하게 못만듬 */
@@ -61,7 +58,7 @@ function App() {
 function Modal(props) {
   return (
     <div className="modal">
-      <h2>{props.title[0]}</h2>
+      <h2>{props.title[props.pushTitle]}</h2>
       <p>날짜</p>
       <p>상세내용</p></div>
   )

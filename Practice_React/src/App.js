@@ -46,6 +46,7 @@ function App() {
       }
 
       <input onChange={(e) => { setInPutData(e.target.value) }}></input>
+      <button>저장</button>
       {console.log(inputData)}
 
       {modal ? <Modal title={title} pushTitle={pushTitle} /> : null}

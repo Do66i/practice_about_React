@@ -21,7 +21,17 @@ function App() {
     setCount(newCount)
   }
 
+  function changeTitle() {
+    let newArr = [...title];
+    newArr.unshift(inputData);
+    setTitle(newArr);
+  }
 
+  function changeCount() {
+    let newArrOfCount = [...count]
+    newArrOfCount.unshift(0);
+    setCount(newArrOfCount)
+  }
 
 
   return ( // html을 여기에 짜고있다는것
@@ -44,10 +54,13 @@ function App() {
           )
         })
       }
-
-      <input onChange={(e) => { setInPutData(e.target.value) }}></input>
-      <button>저장</button>
+      <div className="publish">
+        <input onChange={(e) => { setInPutData(e.target.value) }}></input>
+        {/* 영구 저장은 안된다 왜? DB나 뭐 서버 이런거 없자나 ! */}
+        <button onClick={(e) => { changeTitle(e); changeCount() }}>저장 안되는 저장버튼!</button>
+      </div>
       {console.log(inputData)}
+      {console.log(title)}
 
       {modal ? <Modal title={title} pushTitle={pushTitle} /> : null}
     </div >

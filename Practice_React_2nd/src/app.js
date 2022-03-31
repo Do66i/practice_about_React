@@ -50,5 +50,6 @@ const vdom = createElement('p', {},
 );
 
 console.log(vdom);
+console.log("ASDFASDFSF");
 
 render(vdom, document.querySelector('#root'));

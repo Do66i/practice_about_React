@@ -19,6 +19,11 @@ module.exports = {
         exclude: /node_modules/, // node_modules는 거른다 (거르기 제외)
         use: {
           loader: 'babel-loader',
+          /*
+          babel-loader
+          babel의 plugin중 하나. js파일 안에 포함되어 있는 JSX, 즉 markup은 아니지만 실제로 markup과 유사한 구조를 가지고 있는 것을 react처럼 바꿔줌
+          */
+
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"]
           }

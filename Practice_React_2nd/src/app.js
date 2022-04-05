@@ -1,23 +1,24 @@
-import { createDOM, createElement, render } from "./react";
+/* @jsx createElement */
+import { createElement, render, Component } from "./react";
+//번들파일이 실행되기 때문에 createElement 를 import해야함! 그래야 runtime 오류 없음 ! 
 
-const vdom = createElement('p', {},
-  createElement('h1', {}, "React 만들기"),
-  createElement('ul', {},
-    createElement('li', { style: "color:red" }, "첫 번째 아이템"),
-    createElement('li', { style: "color:blue" }, "두 번째 아이템"),
-    createElement('li', { style: "color:green" }, "세 번째 아이템")
-  )
-);
+class Title extends Component {
+  render() {
+    return <h1>{props.children}</h1>
+  }
+}
 
-const vdom2 = <p>
-  <h1>React 만들기</h1>
+function Item(props) {
+  return <li style={`color:${props.color}`}>{props.children}</li>
+}
+const App = () => <p>
+  <Title>React 즈엉말 만들기</Title>
   <ul>
-    <li style="color:red">첫 번째 아이템</li>
-    <li style="color:blue">첫 번째 아이템</li>
-    <li style="color:green">첫 번째 아이템</li>
+    <Item color="red">첫 번째 아이템</Item>
+    <Item color="blue">두 번째 아이템</Item>
+    <Item color="green">세 번째 아이템</Item>
   </ul>
 </p>
 
-console.log(vdom2);
 
-render(vdom2, document.querySelector('#root'));
+render(<App />, document.querySelector('#root'));

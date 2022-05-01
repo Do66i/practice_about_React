@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Tag from "./Tag";
 
 const Father = styled.div`
   display: flex;
@@ -15,10 +16,10 @@ const Btn = styled.button`
 
 function App() {
   return (
-    <Father>
-      <Box bgColor="red" />
-      <Circle bgColor="blue" />
-    </Father>
+    <div>
+      하이!
+      <Tag />
+    </div>
   );
 }
 
